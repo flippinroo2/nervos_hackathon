@@ -1,5 +1,6 @@
 # NERVOS HACKATHON
 
+The ETH address I will be using to claim CKB for this hackathon is: 0x4Fc8f0ad1901a1f147adD6f90E278e8BEe719B33
 ### NODE URLS
 
 Local Testnet
