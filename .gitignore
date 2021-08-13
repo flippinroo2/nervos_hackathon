@@ -1,6 +1,16 @@
 # FILES
 .DS_STORE
 privkey.txt
+*.sst
+*.log
+CURRENT
+IDENTITY
+LOCK
+LOG
+*.old.*
+MANIFEST-*
+OPTIONS-*
+*private-key
 
 # DIRECTORIES
 **/ckb_*
