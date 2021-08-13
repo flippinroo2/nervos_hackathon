@@ -6,6 +6,8 @@
 ### ETHEREUM
 
 The ETH address I will be using to claim CKB for this hackathon is: 0x4Fc8f0ad1901a1f147adD6f90E278e8BEe719B33
+The Godwoken short address is: 0x8dc9710ad97834edc0aa2c5cac2fec2b162c996c
+
 ### CKB
 
 + mainnet: ckb1qyqzgarpkurst75euzdcneh5kvq8n5d7znjqrf7nwy
