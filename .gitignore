@@ -11,6 +11,7 @@ LOG
 MANIFEST-*
 OPTIONS-*
 *private-key
+testnet rpc command.txt
 
 # DIRECTORIES
 **/ckb_*
