@@ -33,3 +33,16 @@ Public Testnet
 
 + Node RPC URL - http://3.235.223.161:18114
 + Indexer RPC URL - http://3.235.223.161:18116
+
+## START WORK
+
+1.
+    Title: Create A Godwoken Account On The EVM Layer 2 Testnet
+    Project Summmary: This repository is to house submissions for the Nervos hackathon on GitCoin.
+    Url: https://github.com/flippinroo2/nervos_hackathon/tree/development/1%20-%20Create%20A%20Godwoken%20Account%20On%20The%20EVM%20Layer%202%20Testnet
+    Team Members: Flippinroo2
+
+## SUBMIT WORK
+
+1. (SEE SCREENSHOT)
+
