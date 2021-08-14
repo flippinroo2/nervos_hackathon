@@ -1,5 +1,17 @@
 # FILES
 .DS_STORE
+privkey.txt
+*.sst
+*.log
+CURRENT
+IDENTITY
+LOCK
+LOG
+*.old.*
+MANIFEST-*
+OPTIONS-*
+*private-key
+testnet rpc command.txt
 
 # DIRECTORIES
 **/ckb_*
