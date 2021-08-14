@@ -1,6 +1,21 @@
 # FILES
 .DS_STORE
+privkey.txt
+*.sst
+*.log
+CURRENT
+IDENTITY
+LOCK
+LOG
+*.old.*
+ckb.toml
+ckb-miner.toml
+default.db-options
+MANIFEST-*
+OPTIONS-*
+*private-key
+testnet rpc command.txt
 
 # DIRECTORIES
 **/ckb_*
-ckb/
+data/
