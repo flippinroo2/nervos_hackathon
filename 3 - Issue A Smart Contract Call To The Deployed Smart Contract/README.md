@@ -1,6 +1,13 @@
 # 3 - Issue A Smart Contract Call To The Deployed Smart Contract
 
-1. Sample Image
-![METADATA](./URL)
+1. Smart contract call console output
 
-2. Sample Link - [LINK_TEXT](URL)
+![Smart contract call console output](./console-output.png)
+
+2. Transaction Hash -
+
+3. Contract Address -
+
+4. Contract ABI:
+
+
