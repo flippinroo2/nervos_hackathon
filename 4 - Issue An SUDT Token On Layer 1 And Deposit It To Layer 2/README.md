@@ -10,6 +10,6 @@
 
 4. SUDT token deposit layer 2
 
-![SUDT token deposit layer 2](./sudt-tokens-deposited.png)
+![SUDT token deposit layer 2](./sudt-tokens-deposited-2.png)
 
-5. SUDT ID - 2225
+5. SUDT ID - 2360
