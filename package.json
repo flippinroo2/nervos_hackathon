@@ -4,6 +4,6 @@
   },
   "scripts": {
     "sudt": "sudt-cli",
-    "sudt-issue-tokens": "sudt-cli issue -k 0x25bc0e866ca777b031581b2af436e8244a80e640661aa1db7c17fc761aeeac0c -m 10"
+    "sudt-issue-tokens": "sudt-cli issue -k <CKB_PRIVATEKEY> -m 10"
   }
 }
