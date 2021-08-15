@@ -1,6 +1,9 @@
 # 2 - Deploy A Simple Ethereum Smart Contract On Polyjuice
 
-1. Sample Image
-![METADATA](./URL)
+1. Console Output
 
-2. Sample Link - [LINK_TEXT](URL)
+![Console Output](./smart-contract-deployment.png)
+
+2. Transaction Hash -
+
+3. Contract Address -
