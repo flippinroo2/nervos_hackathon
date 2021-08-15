@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "sudt-cli": "^0.5.24"
+  },
+  "scripts": {
+    "sudt": "sudt-cli",
+    "sudt-issue-tokens": "sudt-cli issue -k <CKB_PRIVATEKEY> -m 10"
+  }
+}
