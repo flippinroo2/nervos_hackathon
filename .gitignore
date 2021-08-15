@@ -20,3 +20,4 @@ testnet rpc command.txt
 **/ckb_*
 data/
 temp/
+node_modules/
