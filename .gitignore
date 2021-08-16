@@ -7,6 +7,8 @@ CURRENT
 IDENTITY
 LOCK
 LOG
+OPTIONS-*
+MANIFEST-*
 *.old.*
 ckb.toml
 ckb-miner.toml
@@ -15,6 +17,7 @@ MANIFEST-*
 OPTIONS-*
 *private-key
 testnet rpc command.txt
+*.sst
 
 # DIRECTORIES
 **/ckb_*
