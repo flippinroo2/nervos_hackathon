@@ -18,6 +18,7 @@ testnet rpc command.txt
 
 # DIRECTORIES
 **/ckb_*
+**/ckb-*
 data/
 temp/
 node_modules/
