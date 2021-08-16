@@ -1,1 +1,0 @@
-node ./packages/tools/lib/account-cli.js deposit -r http://3.235.223.161:18114 -l 25bc0e866ca777b031581b2af436e8244a80e640661aa1db7c17fc761aeeac0c -p 0x4Fc8f0ad1901a1f147adD6f90E278e8BEe719B33 -c 100000000000
