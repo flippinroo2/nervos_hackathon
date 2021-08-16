@@ -4,7 +4,7 @@
 
 ![Deploy proxy contract](./deploy-proxy-contract.png)
 
-2. Proxy contract address -
+2. Proxy contract address - 0xc52Ebb7DCDB13482734EECe1B78EbFAD7A6fcA39
 
 3. Check sudt balance
 
