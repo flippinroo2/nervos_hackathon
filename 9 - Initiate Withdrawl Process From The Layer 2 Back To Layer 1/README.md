@@ -1,4 +1,4 @@
-# 9 - Initiate Withdraw Process From The Layer 2 Back To Layer 1
+# 9 - Initiate Withdrawl Process From The Layer 2 Back To Layer 1
 
 1. Layer 2 withdraw
 
