@@ -1,4 +1,4 @@
-# 6 - Use Force Bridge To Deposit Tokens From Ethereum To Polyjuice
+# 9 - Initiate Withdraw Process From The Layer 2 Back To Layer 1
 
 1. Layer 2 withdraw
 
