@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+// Infura Rinkeby Contract Address: 0xb35380333D44fcF5aA57CadE92f8a06a939E0763 (https://rinkeby.etherscan.io/address/0xb35380333d44fcf5aa57cade92f8a06a939e0763)
+// Moralis Rinkeby Contract Address: 0xaa02f9c420A0299e9BC25611F915a0965d8730dD (https://rinkeby.etherscan.io/address/0xaa02f9c420A0299e9BC25611F915a0965d8730dD)
 const DEBUG = false;
 
 const { cache, resolver, require } = artifacts;
