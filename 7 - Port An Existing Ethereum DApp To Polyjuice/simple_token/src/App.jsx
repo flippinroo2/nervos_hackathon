@@ -26,6 +26,7 @@ import {
 } from 'moralis';
 import './App.css';
 import MetaData from './components/MetaData.jsx';
+import debug from './helpers/debug.jsx';
 import { getActiveNetwork, getContracts } from './helpers/transactions.jsx';
 import hardhatContracts from './contracts/hardhat_contracts.json'; // ABI & ADDRESS
 
@@ -67,6 +68,10 @@ class App extends Component {
     super(props);
     this.state = {
       account: '',
+      address: '',
+      admin: '',
+      allowance: 0,
+      balance: 0,
       loading: true,
     };
 
@@ -84,14 +89,14 @@ class App extends Component {
     // moralis.initialize("paste Moralis APP ID here");
     // moralis.serverURL = "paste Morlis server URL here";
 
-    console.log('moralis');
-    console.log(moralis);
+    debug('moralis');
+    debug(moralis);
 
     const Web3Provider = Web3.givenProvider;
     // console.dir(Web3Provider); // Returns a MetaMask provider.
 
     const MoralisWeb3Enable = await moralis.Web3.enable();
-    console.log(MoralisWeb3Enable);
+    debug(MoralisWeb3Enable);
 
     const metaMaskWeb3 = new Web3(MoralisWeb3Enable || 'http://localhost:8545');
     const web3 = new Web3('http://localhost:7545');
@@ -100,7 +105,7 @@ class App extends Component {
     console.log(`accounts: ${accounts}`);
 
     const MoralisWeb3Provider = await moralis.Web3.getWeb3Provider(); // Provider does not have a request or send method to use.
-    console.log(MoralisWeb3Provider);
+    // console.log(MoralisWeb3Provider);
 
     const MoralisConfig = moralis.Config;
     // console.log(MoralisConfig);
@@ -122,11 +127,35 @@ class App extends Component {
     // const MoralisUser = moralis.User.currentAsync(); // Need to call Parse.initialize() before using Parse.
     // console.log(MoralisUser);
 
-    const contractMetadata = await getContracts(web3.eth, hardhatContracts);
+    var ERC20EXAMPLE, Token;
+    var admin, address, allowance, balance, _name;
+    const contractArray = await getContracts(web3.eth, hardhatContracts);
     // const contracts = await getContracts(web3.eth);
-    console.log(contractMetadata);
+    contractArray.forEach(async (item) => {
+      const { _address } = item;
+      // if (_address == '0x10E2bb67a74C9f9e8AA8017E5B24B520dB543751') {
+      //   ERC20EXAMPLE = item;
+      //   const name = await ERC20EXAMPLE.methods.name().call();
+      //   var balance = await ERC20EXAMPLE.methods.balanceOf(accounts[0]).call();
+      //   console.log(`name: ${name}\tbalance: ${balance}`);
+      // }
+      if (_address == '0x48e8cf26b9d25Ca4b103d34047dEe8bAE689eDC7') {
+        Token = item;
+        admin = await Token.methods.getAdmin().call();
+        _name = await Token.methods._name().call();
+        balance = await Token.methods.balanceOf(accounts[0]).call();
+        address = _address;
+        allowance = await Token.methods.allowance(_address, accounts[0]).call();
+        console.log(`_name: ${_name}\tbalance: ${balance}`);
+      }
+    });
 
     this.setState({ account: accounts[0] });
+    this.setState({ name: _name });
+    this.setState({ allowance: allowance });
+    this.setState({ address: address });
+    this.setState({ admin: admin });
+    this.setState({ balance: balance });
     this.setState({ loading: false });
   }
 
@@ -135,7 +164,8 @@ class App extends Component {
   }
 
   render() {
-    const { account, loading } = this.state;
+    const { account, allowance, address, admin, balance, loading, name } =
+      this.state;
 
     const styles = [bootstrapStyle, webixStyle, ...devExtremeStyles];
     const scripts = [bootstrapScript, webixScript, ...devExtremeScripts];
@@ -170,7 +200,16 @@ class App extends Component {
                   <p className="text-center">Loading...</p>
                 </div>
               ) : (
-                <div>{account}</div>
+                <div>
+                  <ul>
+                    <li>{account}</li>
+                    <li>{allowance}</li>
+                    <li>{address}</li>
+                    <li>{admin}</li>
+                    <li>{balance}</li>
+                    <li>{name}</li>
+                  </ul>
+                </div>
               )}
             </main>
           </div>
