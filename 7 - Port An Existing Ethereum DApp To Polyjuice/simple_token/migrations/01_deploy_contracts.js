@@ -2,9 +2,7 @@
 const DEBUG = false;
 
 const { cache, resolver, require } = artifacts;
-const ERC20EXAMPLE = artifacts.require('ERC20EXAMPLE');
-const ERC721EXAMPLE = artifacts.require('ERC721EXAMPLE');
-const TestToken = artifacts.require('TestToken');
+const Token = artifacts.require('Token');
 
 module.exports = async function (deployer) {
   if (DEBUG) {
@@ -15,9 +13,6 @@ module.exports = async function (deployer) {
     debugger;
   }
 
-  await deployer.deploy(ERC20EXAMPLE, 'ERC20EXAMPLE', 'ERC20');
-
-  if (DEBUG) {
-    debugger;
-  }
+  await deployer.deploy(Token, 'Token', 'TOKEN', 18, 1000);
+  const token = await Token.deployed();
 };

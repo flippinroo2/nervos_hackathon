@@ -25,3 +25,6 @@ testnet rpc command.txt
 data/
 temp/
 node_modules/
+artifacts/
+build/
+cache/

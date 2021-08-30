@@ -52,12 +52,10 @@ contract Token is Template {
         _status = _NOT_ENTERED;
     }
 
-    constructor(string memory name_, string memory symbol_, uint256 decimals_, uint256 totalSupply_) payable Template() {
-        address admin = msg.sender;
+    constructor(string memory name_, string memory symbol_, uint256 decimals_, uint256 totalSupply_) payable Template(msg.sender) {
         _name = name_;
         _symbol = symbol_;
         _tokenDecimals = decimals_;
-        setAdmin(admin);
         setTotalSupply(totalSupply_);
         mint(address(this), totalSupply);
     }
@@ -102,7 +100,7 @@ contract Token is Template {
     }
 
     function approve(address spender, uint256 amount) public override safe(msg.sender) returns (bool){
-        address owner = msg.sender;
+        address owner = address(this);
         require((owner != address(0) || (spender != address(0))), "ERC20: approve from the zero address");
         require(amount >= (amount - totalSupply), "Approval would exceed the total supply");
         uint256 spenderBalance = balanceOf(spender);
@@ -126,20 +124,27 @@ contract Token is Template {
     }
 
     function transfer(address recipient, uint256 amount) public override safe(msg.sender) returns (bool){
-        _transfer(msg.sender, recipient, amount);
+        address owner = address(this);
+        address sender = msg.sender;
+        console.log('transfer()');
+        console.log('owner: &s', owner);
+        console.log('sender: %s', sender);
+        _transfer(owner, recipient, amount);
         return true;
     }
 
     function transferFrom(
-    address sender,
+    address spender,
     address recipient,
     uint256 amount
     ) external override safe(msg.sender) reentrancyProtection returns (bool) {
-        _transfer(sender, recipient, amount);
-        uint256 currentAllowance = _allowances[sender][msg.sender];
+        address sender = msg.sender;
+        console.log('sender: %s', sender);
+        _transfer(spender, recipient, amount);
+        uint256 currentAllowance = _allowances[spender][sender];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
         unchecked {
-            _approve(sender, msg.sender, currentAllowance - amount);
+            _approve(spender, sender, currentAllowance - amount);
         }
         return true;
     }

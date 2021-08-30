@@ -56,6 +56,8 @@
     "start": "open -a Ganache",
     "remix-ide": "remixd -s /Users/kloy/Development/Code/ava_labs_assignment --remix-ide http://remix.ethereum.org",
     "safe-remix-ide": "remixd -s /Users/kloy/Development/Code/ava_labs_assignment --read-only --remix-ide http://remix.ethereum.org/",
-    "solhint": "solhint -f table contracts/**/*.sol"
+    "solhint": "solhint -f table contracts/**/*.sol",
+    "waffle": "waffle",
+    "waffle-test": "export NODE_ENV=test && mocha"
   }
 }
