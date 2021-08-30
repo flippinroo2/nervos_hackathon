@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react';
+import debug from './helpers/debug.jsx';
 import Web3 from 'web3';
 import {
   // CLP,
@@ -25,10 +26,13 @@ import {
   // serverURL,
 } from 'moralis';
 import './App.css';
-import MetaData from './components/MetaData.jsx';
-import debug from './helpers/debug.jsx';
 import { getActiveNetwork, getContracts } from './helpers/transactions.jsx';
 import hardhatContracts from './contracts/hardhat_contracts.json'; // ABI & ADDRESS
+import MetaData from './components/MetaData.jsx';
+import Navigation from './components/Navigation.jsx';
+import Panel from './components/Panel.jsx';
+import Label from './components/Label.jsx';
+import Buton from './components/Button.jsx';
 
 const DEBUG = true;
 
@@ -63,6 +67,21 @@ const devExtremeStyles = [
 // https://docs.webix.com/desktop__basic_tasks.html
 const webixStyle = 'https://cdn.webix.com/edge/webix.css';
 const webixScript = 'https://cdn.webix.com/edge/webix.js';
+
+const menu = [
+  {
+    text: 'Home',
+    link: 'index.html',
+  },
+  {
+    text: 'Account',
+    link: 'account.html',
+  },
+  {
+    text: 'Contracts',
+    link: 'contracts.html',
+  },
+];
 
 class App extends Component {
   constructor(props) {
@@ -167,55 +186,32 @@ class App extends Component {
     const { account, allowance, address, admin, balance, loading, name } =
       this.state;
 
-    const styles = [bootstrapStyle, webixStyle, ...devExtremeStyles];
-    const scripts = [bootstrapScript, webixScript, ...devExtremeScripts];
+    // const styles = [bootstrapStyle, webixStyle, ...devExtremeStyles];
+    // const scripts = [bootstrapScript, webixScript, ...devExtremeScripts];
+
+    const styles = [bootstrapStyle];
+    const scripts = [bootstrapScript];
 
     return (
-      <div className="wrapper">
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="http://www.dappuniversity.com/free-download"
-            target="_blank"
-            rel="noreferrer">
-            Sample Dapp
-          </a>
-          <ul className="navbar-nav px-3">
-            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-              <small>
-                <a className="nav-link" href="#">
-                  <span id="account" />
-                </a>
-              </small>
-            </li>
-          </ul>
-        </nav>
+      <>
+        <Navigation menu={menu} />
         <div className="container-fluid">
           <div className="row">
-            <main
-              role="main"
-              className="col-lg-12 d-flex justify-content-center">
+            <main role="main" className="d-flex">
               {loading ? (
                 <div id="loader" className="text-center">
                   <p className="text-center">Loading...</p>
                 </div>
               ) : (
-                <div>
-                  <ul>
-                    <li>{account}</li>
-                    <li>{allowance}</li>
-                    <li>{address}</li>
-                    <li>{admin}</li>
-                    <li>{balance}</li>
-                    <li>{name}</li>
-                  </ul>
-                </div>
+                <Panel
+                  content={[account, address, admin, allowance, balance, name]}
+                />
               )}
             </main>
           </div>
         </div>
-        {/* <MetaData styles={styles} scripts={scripts} /> */}
-      </div>
+        <MetaData styles={styles} scripts={scripts} />
+      </>
     );
   }
 }
