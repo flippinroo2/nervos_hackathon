@@ -9,8 +9,7 @@ export const transactions = {
   getContracts: async (_provider) => {
     const chainID = await _provider.getChainId();
     debug(`chainID: ${chainID}`);
-    const ERC20EXAMPLE = contracts.chainID;
-    debug(ERC20EXAMPLE);
+    // const ERC20EXAMPLE = '';
     // return provider.eth.Contract(ABI, ADDRESS);
   },
   deployContract: async () => {
@@ -65,5 +64,32 @@ export const getContracts = async (_provider, _networks) => {
   // debug(PolitiCoin);
   // debug(Token);
 
-  return contracts;
+  const data = await Promise.all(
+    contracts.map(async (item) => {
+      const { _address } = item;
+      let name, symbol;
+      if (_address == '0x10E2bb67a74C9f9e8AA8017E5B24B520dB543751') {
+        return {
+          address: _address,
+          name: await item.methods.name().call(),
+          symbol: await item.methods.symbol().call(),
+          contract: item,
+        };
+      }
+      if (_address == '0x48e8cf26b9d25Ca4b103d34047dEe8bAE689eDC7') {
+        return {
+          address: _address,
+          name: await item.methods._name().call(),
+          symbol: await item.methods._symbol().call(),
+          contract: item,
+        };
+      }
+      return {
+        address: _address,
+        contract: item,
+      };
+    }),
+  );
+  console.log(data);
+  return data;
 };
