@@ -21,6 +21,14 @@ require('@nomiclabs/hardhat-web3');
 module.exports = {
   solidity: '0.8.0',
   networks: {
+    localhost: {
+      provider: function () {
+        return new Web3.providers.HttpProvider(`http://127.0.0.1:7545`, {
+          keepAlive: true,
+        });
+      },
+      network_id: '*', // Match any network id
+    },
     // test: {
     //   url: 'https://api.avax-test.network/ext/bc/C/rpc',
     //   chainId: 43113,

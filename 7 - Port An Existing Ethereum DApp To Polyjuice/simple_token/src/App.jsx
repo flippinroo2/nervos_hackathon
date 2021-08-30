@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location, jsx-a11y/anchor-is-valid */
+/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react';
 import Web3 from 'web3';
 import {
@@ -94,7 +94,7 @@ class App extends Component {
     console.log(MoralisWeb3Enable);
 
     const metaMaskWeb3 = new Web3(MoralisWeb3Enable || 'http://localhost:8545');
-    const web3 = new Web3('http://localhost:8545');
+    const web3 = new Web3('http://localhost:7545');
 
     const accounts = await web3.eth.getAccounts();
     console.log(`accounts: ${accounts}`);
@@ -124,6 +124,7 @@ class App extends Component {
 
     const contractMetadata = await getContracts(web3.eth, hardhatContracts);
     // const contracts = await getContracts(web3.eth);
+    console.log(contractMetadata);
 
     this.setState({ account: accounts[0] });
     this.setState({ loading: false });

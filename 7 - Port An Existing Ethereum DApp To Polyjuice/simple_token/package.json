@@ -11,6 +11,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "ipfs-http-client": "^45.0.0",
     "prettier": "^2.3.2",
     "solhint": "^3.3.6"
   },
@@ -24,16 +25,32 @@
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@nomiclabs/hardhat-web3": "^2.0.0",
     "@openzeppelin/contracts": "^4.2.0",
+    "@openzeppelin/hardhat-upgrades": "^1.9.0",
+    "@openzeppelin/test-helpers": "^0.5.12",
     "@truffle/hdwallet-provider": "^1.5.0",
+    "@uniswap/sdk": "^3.0.3",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "@walletconnect/web3-provider": "^1.6.5",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.4.4",
     "hardhat": "^2.6.0",
+    "hardhat-deploy": "^0.8.11",
+    "hardhat-docgen": "^1.1.1",
+    "hardhat-erc1820": "^0.1.0",
+    "hardhat-watcher": "^2.1.1",
     "mocha": "^9.0.3",
-    "moralis": "^0.0.35",
+    "moralis": "^0.0.36",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.0",
     "truffle": "^5.4.5",
-    "web3": "^1.5.1"
+    "web3": "^1.5.2"
   },
   "scripts": {
     "custom": "hardhat delete && truffle compile && truffle migrate && truffle test",
@@ -55,6 +72,9 @@
     "truffle-test-debug": "truffle test --stacktrace-extra",
     "watch": "node scripts/watch.js",
     "start": "open -a Ganache",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
     "remix-ide": "remixd -s /Users/kloy/Development/Code/ava_labs_assignment --remix-ide http://remix.ethereum.org",
     "safe-remix-ide": "remixd -s /Users/kloy/Development/Code/ava_labs_assignment --read-only --remix-ide http://remix.ethereum.org/",
     "infuraRinkeby": "truffle compile && truffle migrate --network infuraRinkeby",
@@ -62,5 +82,17 @@
     "solhint": "solhint -f table contracts/**/*.sol",
     "waffle": "waffle",
     "waffle-test": "export NODE_ENV=test && mocha"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
