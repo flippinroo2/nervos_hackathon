@@ -7,12 +7,16 @@ const DEBUG = false;
 class Button extends Component {
   constructor(props) {
     super(props);
-    const { text } = props;
     const stateObject = {
-      text,
+      text: '',
     };
     this.state = stateObject;
     this.interactWithContract = this.interactWithContract.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { text } = props;
+    return { text };
   }
 
   componentDidMount() {}

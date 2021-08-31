@@ -9,13 +9,16 @@ const DEBUG = false;
 class Contract extends Component {
   constructor(props) {
     super(props);
-    const { address, contract } = props;
     const stateObject = {
-      address,
-      contract,
+      address: '',
+      contract: {},
       loading: true,
     };
     this.state = stateObject;
+  }
+  static getDerivedStateFromProps(props, state) {
+    const { address, contract } = props;
+    return { address, contract };
   }
 
   componentDidMount() {
