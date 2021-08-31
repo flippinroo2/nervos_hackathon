@@ -1,82 +1,67 @@
-/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location, jsx-a11y/anchor-is-valid */
-import React from 'react';
+/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import useStyle from '../hooks/useStyle.jsx';
-import useScript from '../hooks/useScript.jsx';
+import Panel from './Panel.jsx';
+import ProgressBar from './ProgressBar.jsx';
 
 const DEBUG = false;
 
 class Contract extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    // this.state = {};
-
-    // this.bindedFunction = this.bindedFunction.bind(this);
+    const { address, admin, allowances, balances, loading } = props;
+    const stateObject = {
+      address: '',
+      admin: '',
+      allowances: {},
+      balances: {},
+      loading: true,
+    };
+    this.state = stateObject;
+    this.componentLoaded = this.componentLoaded.bind(this);
   }
 
   componentDidMount() {
-    // this.loadBlockchainData();
+    this.componentLoaded();
   }
 
   /*
   Function that is tied to state. See the "bind(this)" call in constructor above.
   */
-  // bindedFunction() {
-  //   this.setState({});
-  // }
+  componentLoaded() {
+    // this.setState({ loading: false });
+  }
 
   render() {
-    // const { account, loading } = this.state;
+    const { address, admin, allowances, balances, loading } = this.state;
     return (
-      <div className="wrapper">
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="http://www.dappuniversity.com/free-download"
-            target="_blank"
-            rel="noreferrer">
-            Dapp University | Todo List
-          </a>
-          <ul className="navbar-nav px-3">
-            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-              <small>
-                <a className="nav-link" href="#">
-                  <span id="account" />
-                </a>
-              </small>
-            </li>
-          </ul>
-        </nav>
-        <div className="container-fluid">
+      <>
+        {loading ? (
+          <ProgressBar percentage={60} minimum={0} maximum={100} />
+        ) : (
           <div className="row">
-            <main
-              role="main"
-              className="col-lg-12 d-flex justify-content-center">
-              {true ? (
-                <div id="loader" className="text-center">
-                  <p className="text-center">Loading...</p>
-                </div>
-              ) : (
-                <div>{'contract'}</div>
-              )}
-            </main>
+            <Panel
+              content={{
+                address,
+                admin,
+                allowances,
+                balances,
+              }}
+            />
           </div>
-        </div>
-        {/* <MetaData styles={styles} scripts={scripts} /> */}
-      </div>
+        )}
+      </>
     );
   }
 }
 
 Contract.propTypes = {
-  styles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  scripts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  address: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
-// MetaData.defaultProps = {
-//   styles: [''],
-//   scripts: ['']
-// };
+Contract.defaultProps = {
+  loading: true,
+};
 
 export default Contract;

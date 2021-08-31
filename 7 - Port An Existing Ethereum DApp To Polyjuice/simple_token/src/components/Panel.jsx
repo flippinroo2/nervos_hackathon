@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const DEBUG = true;
+const DEBUG = false;
 
 const Panel = (props) => {
   if (DEBUG) {
@@ -8,7 +8,8 @@ const Panel = (props) => {
     console.log(props);
   }
 
-  const { content } = props;
+  const { address, admin, allowances, balances, loading } = props;
+  const content = [address, admin, allowances, balances, loading];
 
   return (
     <div className="panel panel-default">

@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location, jsx-a11y/anchor-is-valid */
-import React from 'react';
+/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import useStyle from '../hooks/useStyle.jsx';
-import useScript from '../hooks/useScript.jsx';
 
 const DEBUG = false;
 

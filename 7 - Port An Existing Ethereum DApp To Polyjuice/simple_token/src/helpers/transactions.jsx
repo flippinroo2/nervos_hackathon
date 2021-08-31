@@ -90,6 +90,6 @@ export const getContracts = async (_provider, _networks) => {
       };
     }),
   );
-  console.log(data);
+  debug(data);
   return data;
 };

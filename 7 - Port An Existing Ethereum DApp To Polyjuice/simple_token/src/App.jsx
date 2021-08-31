@@ -30,9 +30,7 @@ import { getActiveNetwork, getContracts } from './helpers/transactions.jsx';
 import hardhatContracts from './contracts/hardhat_contracts.json'; // ABI & ADDRESS
 import MetaData from './components/MetaData.jsx';
 import Navigation from './components/Navigation.jsx';
-import Panel from './components/Panel.jsx';
-import Label from './components/Label.jsx';
-import Buton from './components/Button.jsx';
+import Content from './Content.jsx';
 
 const DEBUG = true;
 
@@ -86,15 +84,15 @@ const menu = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    const stateObject = {
       account: '',
       address: '',
       admin: '',
-      allowance: 0,
-      balance: 0,
+      allowances: 0,
+      balances: 0,
       loading: true,
     };
-
+    this.state = stateObject;
     this.toggleCompleted = this.toggleCompleted.bind(this);
   }
 
@@ -175,7 +173,7 @@ class App extends Component {
 
     this.setState({ account: accounts[0] });
     this.setState({ loading: false });
-    console.log(contractArray);
+    debug(contractArray);
   }
 
   toggleCompleted() {
@@ -195,21 +193,11 @@ class App extends Component {
     return (
       <>
         <Navigation menu={menu} />
-        <div className="container-fluid">
-          <div className="row">
-            <main role="main" className="d-flex">
-              {loading ? (
-                <div id="loader" className="text-center">
-                  <p className="text-center">Loading...</p>
-                </div>
-              ) : (
-                <Panel
-                  content={[account, address, admin, allowance, balance, name]}
-                />
-              )}
-            </main>
+        <main role="main">
+          <div className="container-fluid">
+            <Content />
           </div>
-        </div>
+        </main>
         <MetaData styles={styles} scripts={scripts} />
       </>
     );

@@ -7,17 +7,18 @@ const ProgressBar = (props) => {
     console.log('props');
     console.log(props);
   }
+  const { percentage, minimum, maximum } = props;
 
   return (
     <div className="progress">
       <div
         className="progress-bar progress-bar-striped"
         role="progressbar"
-        aria-valuenow="60"
-        aria-valuemin="0"
-        aria-valuemax="100">
+        aria-valuenow={`${percentage}`}
+        aria-valuemin={`${minimum}`}
+        aria-valuemax={`${maximum}`}>
         {/* <span class="sr-only">60% Progress</span> */}
-        <span>60% Progress</span>
+        <span>{`${percentage}% Loaded`}</span>
       </div>
     </div>
   );
