@@ -69,7 +69,7 @@ class Panel extends Component {
       this.state;
     console.log(this.state);
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-default my-2">
         <div className="panel-heading">
           <h4 className="panel-title">{address}</h4>
         </div>
@@ -79,7 +79,7 @@ class Panel extends Component {
           <li>{`name: ${name}`}</li>
           <li>{`symbol: ${symbol}`}</li>
           <li>{`totalSupply: ${totalSupply}`}</li>
-          <Button />
+          <Button text={'Click Me'} />
         </div>
       </div>
     );

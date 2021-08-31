@@ -7,16 +7,9 @@ const DEBUG = false;
 class Button extends Component {
   constructor(props) {
     super(props);
-    const { address, contract } = props.content;
+    const { text } = props;
     const stateObject = {
-      address,
-      admin: '',
-      balance: 0,
-      contract,
-      loading: true,
-      name: '',
-      symbol: '',
-      totalSupply: 0,
+      text,
     };
     this.state = stateObject;
     this.interactWithContract = this.interactWithContract.bind(this);
@@ -29,7 +22,12 @@ class Button extends Component {
   }
 
   render() {
-    return <button onClick={this.interactWithContract()} />;
+    const { text } = this.state;
+    return (
+      <button onClick={async () => await this.interactWithContract()}>
+        {text}
+      </button>
+    );
   }
 }
 
