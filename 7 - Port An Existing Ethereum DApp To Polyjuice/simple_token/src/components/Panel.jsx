@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button.jsx';
+import TextInput from './TextInput.jsx';
 import DropdownButton from './DropdownButton.jsx';
+import Toast from './Toast.jsx';
 
 const DEBUG = false;
 
@@ -14,7 +16,7 @@ class Panel extends Component {
       admin: '',
       balance: 0,
       contract: {},
-      functions: [],
+      functions: {},
       loading: true,
       name: '',
       symbol: '',
@@ -40,13 +42,7 @@ class Panel extends Component {
     const { address, contract } = this.state;
     if (address == '0x10E2bb67a74C9f9e8AA8017E5B24B520dB543751') {
       const ERC20EXAMPLE = contract;
-      const methods = Object.keys(contract.methods);
-      const functions = methods.filter((item, index) => {
-        if (item.startsWith('0x') || item.endsWith('()')) {
-          return null;
-        }
-        return item;
-      });
+      const functions = contract.methods;
 
       this.setState({ functions });
 
@@ -65,13 +61,7 @@ class Panel extends Component {
 
     if (address == '0x48e8cf26b9d25Ca4b103d34047dEe8bAE689eDC7') {
       const Token = contract;
-      const methods = Object.keys(contract.methods);
-      const functions = methods.filter((item, index) => {
-        if (item.startsWith('0x') || item.endsWith('()')) {
-          return null;
-        }
-        return item;
-      });
+      const functions = contract.methods;
 
       this.setState({ functions });
 
@@ -104,7 +94,7 @@ class Panel extends Component {
       totalSupply,
     } = this.state;
     return (
-      <div className="panel panel-default my-2">
+      <div className="panel panel-default mb-5">
         <div className="panel-heading">
           <h4 className="panel-title">{address}</h4>
         </div>
@@ -114,7 +104,11 @@ class Panel extends Component {
           <li>{`name: ${name}`}</li>
           <li>{`symbol: ${symbol}`}</li>
           <li>{`totalSupply: ${totalSupply}`}</li>
-          <DropdownButton items={functions} />
+          <div class="input-group mb-3">
+            <TextInput />
+            <DropdownButton functions={functions} />
+          </div>
+          <Toast functionName={'functionName'} returnValue={'returnValue'} />
         </div>
       </div>
     );

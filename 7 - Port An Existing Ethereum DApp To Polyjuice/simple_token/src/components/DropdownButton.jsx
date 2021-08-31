@@ -9,7 +9,8 @@ class DropdownButton extends Component {
     this.functionList = React.createRef();
     const stateObject = {
       buttonText: 'N/A',
-      items: [],
+      functions: {},
+      functionText: [],
     };
     this.state = stateObject;
     this.selectFunction = this.selectFunction.bind(this);
@@ -17,14 +18,26 @@ class DropdownButton extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { items } = props;
-    const functions = items.filter((item) => {
-      if (!item.endsWith(')')) {
-        return null;
-      }
-      return item;
-    });
-    return { items: functions };
+    const { functions } = props;
+    var functionText = [];
+    if (functions) {
+      functionText = Object.keys(functions).filter((item) => {
+        if (item.startsWith('_')) {
+          if (!item.endsWith(')')) {
+            return null;
+          }
+          return item;
+        }
+        if (item.startsWith('0x') || item.endsWith('()')) {
+          return null;
+        }
+        if (!item.endsWith(')')) {
+          return null;
+        }
+        return item;
+      });
+    }
+    return { functions, functionText };
   }
 
   componentDidMount() {
@@ -47,13 +60,17 @@ class DropdownButton extends Component {
   }
 
   async interactWithContract(event) {
+    const { functions } = this.state;
     const { target } = event;
     const { innerText } = target;
     console.log(innerText);
+    console.log(functions);
+    const test = await functions[innerText]().call();
+    console.log(test);
   }
 
   render() {
-    const { items, buttonText } = this.state;
+    const { buttonText, functions, functionText } = this.state;
     // Try combining both the hidden & unhidden buttons.
     return (
       <div className="btn-group">
@@ -74,8 +91,8 @@ class DropdownButton extends Component {
           className="dropdown-menu"
           data-popper-placement="bottom-start"
           ref={this.functionList}>
-          {items.length ? (
-            items.map((item, index) => {
+          {functionText.length ? (
+            functionText.map((item, index) => {
               return (
                 <li key={index}>
                   <a
