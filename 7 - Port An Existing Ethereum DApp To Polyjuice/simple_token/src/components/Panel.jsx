@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button.jsx';
 
 const DEBUG = false;
 
@@ -78,6 +79,7 @@ class Panel extends Component {
           <li>{`name: ${name}`}</li>
           <li>{`symbol: ${symbol}`}</li>
           <li>{`totalSupply: ${totalSupply}`}</li>
+          <Button />
         </div>
       </div>
     );

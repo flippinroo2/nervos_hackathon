@@ -19,11 +19,14 @@ class Button extends Component {
       totalSupply: 0,
     };
     this.state = stateObject;
+    this.interactWithContract = this.interactWithContract.bind(this);
   }
 
   componentDidMount() {}
 
-  async interactWithContract() {}
+  async interactWithContract() {
+    console.log('Button Clicked');
+  }
 
   render() {
     return <button onClick={this.interactWithContract()} />;

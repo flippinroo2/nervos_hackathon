@@ -2,21 +2,21 @@ import PropTypes from 'prop-types';
 
 const DEBUG = false;
 
-const Template = (props) => {
+const TemplateFunction = (props) => {
   if (DEBUG) {
     console.log('props');
     console.log(props);
   }
 
-  return <div></div>;
+  return <div className="template_function"></div>;
 };
 
-// Template.propTypes = {
+// TemplateFunction.propTypes = {
 //   array: PropTypes.arrayOf(PropTypes.string).isRequired,
 // };
 
-// Template.defaultProps = {
+// TemplateFunction.defaultProps = {
 //   array: [''],
 // };
 
-export default Template;
+export default TemplateFunction;
