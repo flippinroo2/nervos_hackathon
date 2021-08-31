@@ -9,48 +9,34 @@ const DEBUG = false;
 class Contract extends Component {
   constructor(props) {
     super(props);
-    const { address, admin, allowances, balances, loading } = props;
+    const { address, contract } = props;
     const stateObject = {
-      address: '',
-      admin: '',
-      allowances: {},
-      balances: {},
+      address,
+      contract,
       loading: true,
     };
     this.state = stateObject;
-    this.componentLoaded = this.componentLoaded.bind(this);
   }
 
   componentDidMount() {
-    this.componentLoaded();
-  }
-
-  /*
-  Function that is tied to state. See the "bind(this)" call in constructor above.
-  */
-  componentLoaded() {
-    // this.setState({ loading: false });
+    this.setState({ loading: false });
   }
 
   render() {
-    const { address, admin, allowances, balances, loading } = this.state;
+    const { address, contract, loading } = this.state;
     return (
-      <>
+      <div className="row">
         {loading ? (
-          <ProgressBar percentage={60} minimum={0} maximum={100} />
+          <ProgressBar percentage={70} minimum={0} maximum={100} />
         ) : (
-          <div className="row">
-            <Panel
-              content={{
-                address,
-                admin,
-                allowances,
-                balances,
-              }}
-            />
-          </div>
+          <Panel
+            content={{
+              address,
+              contract,
+            }}
+          />
         )}
-      </>
+      </div>
     );
   }
 }
@@ -61,6 +47,7 @@ Contract.propTypes = {
 };
 
 Contract.defaultProps = {
+  address: '',
   loading: true,
 };
 

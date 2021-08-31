@@ -10,13 +10,14 @@ const ProgressBar = (props) => {
   const { percentage, minimum, maximum } = props;
 
   return (
-    <div className="progress">
+    <div className="progress my-2" style={{ width: '100%' }}>
       <div
         className="progress-bar progress-bar-striped"
         role="progressbar"
         aria-valuenow={`${percentage}`}
         aria-valuemin={`${minimum}`}
-        aria-valuemax={`${maximum}`}>
+        aria-valuemax={`${maximum}`}
+        style={{ width: `${percentage}%` }}>
         {/* <span class="sr-only">60% Progress</span> */}
         <span>{`${percentage}% Loaded`}</span>
       </div>

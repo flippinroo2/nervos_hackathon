@@ -1,16 +1,34 @@
+/* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const DEBUG = false;
 
-const Button = (props) => {
-  if (DEBUG) {
-    console.log('props');
-    console.log(props);
+class Button extends Component {
+  constructor(props) {
+    super(props);
+    const { address, contract } = props.content;
+    const stateObject = {
+      address,
+      admin: '',
+      balance: 0,
+      contract,
+      loading: true,
+      name: '',
+      symbol: '',
+      totalSupply: 0,
+    };
+    this.state = stateObject;
   }
 
-  // Use "sm" for small, "lg" for large and don't have anything after "btn" for normal size.
-  return <button type="button" class="btn btn-sm btn-default"></button>;
-};
+  componentDidMount() {}
+
+  async interactWithContract() {}
+
+  render() {
+    return <button onClick={this.interactWithContract()} />;
+  }
+}
 
 // Button.propTypes = {
 //   array: PropTypes.arrayOf(PropTypes.string).isRequired,
