@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Panel from '../general/Panel.jsx';
-import ProgressBar from '../general/ProgressBar.jsx';
+import Panel from '../bootstrap/Panel.jsx';
+import ProgressBar from '../bootstrap/ProgressBar.jsx';
 
 const DEBUG = false;
 

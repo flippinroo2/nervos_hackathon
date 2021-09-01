@@ -18,8 +18,8 @@ class App extends Component {
     this.state = stateObject;
   }
 
+  componentWillMount() {}
   componentDidMount() {}
-
   componentDidUpdate() {}
 
   componentDidCatch(error, info) {
