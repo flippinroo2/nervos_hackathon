@@ -1,16 +1,19 @@
-import PropTypes from 'prop-types';
 import { ant, bootstrap, devExtreme, webix } from '../styles/libraries.js';
 import useStyle from '../hooks/useStyle.jsx';
 import useScript from '../hooks/useScript.jsx';
 
 const DEBUG = false;
 
-const MetaData = ({ styles, scripts }) => {
+// const styles = [bootstrapStyle, webixStyle, ...devExtremeStyles];
+// const scripts = [bootstrapScript, webixScript, ...devExtremeScripts];
+
+const styles = bootstrap.styles;
+const scripts = bootstrap.scripts;
+
+const MetaData = (props) => {
   if (DEBUG) {
-    console.log('styles');
-    console.log(styles);
-    console.log('scripts');
-    console.log(scripts);
+    console.log('props');
+    console.log(props);
   }
 
   styles.forEach((url) => {
@@ -24,10 +27,10 @@ const MetaData = ({ styles, scripts }) => {
   return null;
 };
 
-MetaData.propTypes = {
-  styles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  scripts: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+// MetaData.propTypes = {
+//   styles: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   scripts: PropTypes.arrayOf(PropTypes.string).isRequired,
+// };
 
 // MetaData.defaultProps = {
 //   styles: [''],

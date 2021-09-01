@@ -32,12 +32,14 @@ class Contract extends Component {
         {loading ? (
           <ProgressBar percentage={70} minimum={0} maximum={100} />
         ) : (
-          <Panel
-            content={{
-              address,
-              contract,
-            }}
-          />
+          <ContractProvider.Provider value={contracts}>
+            <Panel
+              content={{
+                address,
+                contract,
+              }}
+            />
+          </ContractProvider.Provider>
         )}
       </div>
     );
