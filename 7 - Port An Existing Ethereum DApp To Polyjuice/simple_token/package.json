@@ -27,6 +27,7 @@
     "@openzeppelin/contracts": "^4.2.0",
     "@openzeppelin/hardhat-upgrades": "^1.9.0",
     "@openzeppelin/test-helpers": "^0.5.12",
+    "@reduxjs/toolkit": "^1.6.1",
     "@truffle/hdwallet-provider": "^1.5.0",
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
@@ -47,8 +48,10 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "redux": "^4.1.1",
     "truffle": "^5.4.5",
     "web3": "^1.5.2"
   },

@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react'; // ErrorBoundary isn't working. (It was supposed to be declared with "Component" and wrapped around the application <ErrorBoundary></ErrorBoundary>)
+import store from './data_warehouse/store.js';
+import { Provider } from 'react-redux';
 
 import './styles/App.css';
 

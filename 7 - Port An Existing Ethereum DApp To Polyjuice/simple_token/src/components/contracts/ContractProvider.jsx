@@ -36,6 +36,7 @@ debug(hardhatContracts);
 
 var contracts, ContractContext;
 
+// https://kentcdodds.com/blog/how-to-use-react-context-effectively
 async function loadBlockchainData() {
   // console.clear();
 
