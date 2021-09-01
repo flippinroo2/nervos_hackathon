@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from './Alert.jsx';
 
 const DEBUG = false;
 
@@ -9,12 +10,14 @@ class DropdownButton extends Component {
     this.functionList = React.createRef();
     const stateObject = {
       buttonText: 'N/A',
-      functions: {},
+      functionArguments: '',
       functionText: [],
+      functions: {},
     };
     this.state = stateObject;
     this.selectFunction = this.selectFunction.bind(this);
     this.interactWithContract = this.interactWithContract.bind(this);
+    this.returnFunctionResult = this.returnFunctionResult.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -44,8 +47,20 @@ class DropdownButton extends Component {
     // console.log(this.functionList.current.children);
   }
 
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log(info);
+    // Display fallback UI
+    // this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    // logErrorToMyService(error, info);
+  }
+
   selectFunction(event) {
-    const { target, type } = event;
+    const { target, nativeEvent, type } = event;
+    // console.log(event);
+    // const { path } = nativeEvent;
+    // console.log(nativeEvent);
     const {
       attributes,
       children,
@@ -53,20 +68,43 @@ class DropdownButton extends Component {
       className,
       innerHTML,
       innerText,
+      parentElement,
       style,
       value,
+      view,
     } = target;
     this.setState({ buttonText: innerText });
   }
 
   async interactWithContract(event) {
     const { functions } = this.state;
-    const { target } = event;
-    const { innerText } = target;
-    console.log(innerText);
     console.log(functions);
-    const test = await functions[innerText]().call();
+    const { path, target } = event;
+    const { innerText } = target;
+    const [inputGroup] = path.filter((item) => {
+      const { classList } = item;
+      if (classList && classList.contains('input-group')) {
+        return item;
+      }
+    });
+    let { value } = inputGroup.firstChild;
+    if (innerText == 'N/A') {
+      return null;
+    }
+    let functionResult;
+    if (!value) {
+      functionResult = await functions[innerText]().call();
+    } else {
+      functionResult = await functions[innerText](value).call();
+    }
+    console.log(functionResult);
+    const test = await functions[innerText](value);
     console.log(test);
+    returnFunctionResult(functionResult);
+  }
+
+  returnFunctionResult(result) {
+    this.props.returnFunctionResult(result);
   }
 
   render() {
@@ -77,7 +115,14 @@ class DropdownButton extends Component {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={async () => await this.interactWithContract(event)}>
+          onClick={async () => {
+            try {
+              await this.interactWithContract(event);
+            } catch (e) {
+              console.log(e);
+              return <Alert errorText={e} />;
+            }
+          }}>
           {buttonText}
         </button>
         <button

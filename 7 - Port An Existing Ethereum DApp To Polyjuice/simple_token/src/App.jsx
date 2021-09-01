@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import debug from './helpers/debug.jsx';
+import React, { Component } from 'react'; // ErrorBoundary isn't working. (It was supposed to be declared with "Component" and wrapped around the application <ErrorBoundary></ErrorBoundary>)
 
 import './styles/App.css';
 
 import Navigation from './components/navigation/Navigation.jsx';
-import ContractProvider from './components/contracts/ContractProvider.jsx';
 import Content from './components/Content.jsx';
 import MetaData from './components/MetaData.jsx';
 
@@ -15,25 +12,24 @@ const DEBUG = true;
 class App extends Component {
   constructor(props) {
     super(props);
-    const stateObject = {
-      contracts: [],
-      loading: true,
-    };
+    const stateObject = {};
     this.state = stateObject;
-    this.toggleCompleted = this.toggleCompleted.bind(this);
   }
 
   componentDidMount() {}
 
   componentDidUpdate() {}
 
-  toggleCompleted() {
-    this.setState({ loading: true });
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log(info);
+    // Display fallback UI
+    // this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    // logErrorToMyService(error, info);
   }
 
   render() {
-    const { contracts } = this.state;
-
     return (
       <>
         <Navigation />

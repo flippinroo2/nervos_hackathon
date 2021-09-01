@@ -104,7 +104,7 @@ class Panel extends Component {
           <li>{`name: ${name}`}</li>
           <li>{`symbol: ${symbol}`}</li>
           <li>{`totalSupply: ${totalSupply}`}</li>
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <TextInput />
             <DropdownButton functions={functions} />
           </div>

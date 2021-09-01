@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
-import menu from './/menu.js';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import AccountPage from '../pages/Account.jsx';
+import ContractPage from '../pages/Contracts.jsx';
 import NavItem from './NavItem.jsx';
+
+import menu from './menu.js';
 
 const DEBUG = false;
 
@@ -12,21 +17,32 @@ const Navigation = (props) => {
 
   return (
     <nav className="navbar navbar-dark navbar-fixed-top bg-dark shadow">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <a className="navbar-brand" href="#" target="_blank" rel="noreferrer">
-            DApp
-          </a>
+      <Router>
+        <Switch>
+          <Route path={'/'}></Route>
+          <Route path={'/accounts'}>
+            <AccountPage />
+          </Route>
+          <Route path={'/contracts'}>
+            <ContractPage />
+          </Route>
+        </Switch>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <Link className="navbar-brand" to={'/'} rel="noreferrer">
+              DApp
+            </Link>
+          </div>
+          <ul className="nav navbar-nav" role="tablist">
+            {menu.map((item, index) => {
+              const { text, link } = item;
+              return (
+                <NavItem key={`nav-item-${index}`} text={text} link={link} />
+              );
+            })}
+          </ul>
         </div>
-        <ul className="nav navbar-nav" role="tablist">
-          {menu.map((item, index) => {
-            const { text, link } = item;
-            return (
-              <NavItem key={`nav-item-${index}`} text={text} link={link} />
-            );
-          })}
-        </ul>
-      </div>
+      </Router>
     </nav>
   );
 };

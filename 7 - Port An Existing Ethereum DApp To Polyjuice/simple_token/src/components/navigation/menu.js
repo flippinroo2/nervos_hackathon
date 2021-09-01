@@ -1,15 +1,15 @@
 const menu = [
   {
     text: 'Home',
-    link: 'index.html',
+    link: '',
   },
   {
     text: 'Account',
-    link: 'account.html',
+    link: 'account',
   },
   {
     text: 'Contracts',
-    link: 'contracts.html',
+    link: 'contracts',
   },
 ];
 

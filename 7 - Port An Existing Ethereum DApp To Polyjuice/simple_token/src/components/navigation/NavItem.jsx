@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const DEBUG = false;
 
@@ -12,7 +13,7 @@ const NavItem = (props) => {
 
   return (
     <li role="presentation">
-      <a href={link}>{text}</a>
+      <Link to={`/${link}`}>{text}</Link>
     </li>
   );
 };

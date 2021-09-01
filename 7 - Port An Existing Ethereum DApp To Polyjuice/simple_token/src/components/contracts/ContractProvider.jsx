@@ -94,9 +94,4 @@ async function loadBlockchainData() {
   return contractArray;
 }
 
-const context = Promise.resolve(loadBlockchainData()).then((value) => {
-  // console.log(value);
-  return value;
-});
-
-export default createContext(context);
+export default createContext(loadBlockchainData());
