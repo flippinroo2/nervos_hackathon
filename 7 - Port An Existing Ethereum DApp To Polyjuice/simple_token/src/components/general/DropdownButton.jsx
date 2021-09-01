@@ -92,13 +92,15 @@ class DropdownButton extends Component {
       return null;
     }
     let functionResult;
+    let test;
     if (!value) {
+      test = await functions[innerText]();
       functionResult = await functions[innerText]().call();
     } else {
+      test = await functions[innerText](value);
       functionResult = await functions[innerText](value).call();
     }
     console.log(functionResult);
-    const test = await functions[innerText](value);
     console.log(test);
     returnFunctionResult(functionResult);
   }
