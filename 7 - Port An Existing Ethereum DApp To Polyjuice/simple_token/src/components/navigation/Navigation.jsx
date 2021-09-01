@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import NavItem from './navigation/NavItem.jsx';
+import menu from './/menu.js';
+import NavItem from './NavItem.jsx';
 
 const DEBUG = false;
 
@@ -8,8 +9,6 @@ const Navigation = (props) => {
     console.log('props');
     console.log(props);
   }
-
-  const { menu } = props;
 
   return (
     <nav className="navbar navbar-dark navbar-fixed-top bg-dark shadow">

@@ -1,46 +1,14 @@
 /* eslint-disable no-unused-vars, react/jsx-closing-bracket-location */
 import React, { Component } from 'react';
 import debug from './helpers/debug.jsx';
-import Web3 from 'web3';
-import {
-  // CLP,
-  // Cloud,
-  // Config,
-  // CoreManager,
-  // Dot,
-  // FacebookUtils,
-  // File,
-  // LiveQuery,
-  Moralis,
-  // Plugins,
-  // Polygon,
-  // Role,
-  // Session,
-  // Storage,
-  // UI,
-  // User,
-  // Web3API,
-  // authenticate,
-  // initialize,
-  // secret,
-  // serverURL,
-} from 'moralis';
-import { ant, bootstrap, devExtreme, webix } from './styles/libraries.js';
+
 import './styles/App.css';
-import menu from './components/navigation/menu.js';
-import { getActiveNetwork, getContracts } from './helpers/transactions.jsx';
-import hardhatContracts from './contracts/hardhat_contracts.json'; // ABI & ADDRESS
+
+import Navigation from './components/navigation/Navigation.jsx';
+import Content from './components/Content.jsx';
 import MetaData from './components/MetaData.jsx';
-import Navigation from './components/Navigation.jsx';
-import Content from './Content.jsx';
 
 const DEBUG = true;
-
-const moralis = require('moralis');
-// const hardhatContracts = require('./contracts/hardhat_contracts.json'); // ABI & ADDRESS
-
-debug('hardhatContracts');
-debug(hardhatContracts);
 
 class App extends Component {
   constructor(props) {
