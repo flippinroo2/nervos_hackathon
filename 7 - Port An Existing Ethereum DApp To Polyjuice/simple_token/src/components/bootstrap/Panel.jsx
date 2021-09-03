@@ -21,6 +21,9 @@ class Panel extends Component {
       name: '',
       symbol: '',
       totalSupply: 0,
+      functionArguments: 'N/A',
+      functionTitle: 'N/A',
+      functionResult: 'N/A',
     };
     this.state = stateObject;
   }
@@ -37,6 +40,26 @@ class Panel extends Component {
   componentDidUpdate() {
     // console.log(this.state.functions);
   }
+
+  returnFunctionResult = (
+    functionData,
+    functionSignature,
+    functionArguments,
+    functionResult,
+  ) => {
+    functionData.forEach((item) => {
+      const [functionName] = item;
+      const [functionCompare] = functionSignature.split('(');
+      if (functionName == functionCompare) {
+        this.setState({
+          functionSignature,
+          functionTitle: functionName,
+          functionArguments,
+          functionResult,
+        });
+      }
+    });
+  };
 
   async getContractData() {
     const { address, contract } = this.state;
@@ -92,6 +115,11 @@ class Panel extends Component {
       name,
       symbol,
       totalSupply,
+      functionArguments,
+      functionName,
+      functionTitle,
+      functionSignature,
+      functionResult,
     } = this.state;
     return (
       <div className="panel panel-default mb-5">
@@ -106,9 +134,16 @@ class Panel extends Component {
           <li>{`totalSupply: ${totalSupply}`}</li>
           <div className="input-group mb-3">
             <TextInput />
-            <DropdownButton functions={functions} />
+            <DropdownButton
+              functions={functions}
+              returnValueFunction={this.returnFunctionResult}
+            />
           </div>
-          <Toast functionName={'functionName'} returnValue={'returnValue'} />
+          <Toast
+            functionSignature={functionSignature}
+            functionArguments={functionArguments}
+            functionReturn={functionResult}
+          />
         </div>
       </div>
     );

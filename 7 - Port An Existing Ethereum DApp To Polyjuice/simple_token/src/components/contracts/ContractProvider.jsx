@@ -53,7 +53,7 @@ async function loadBlockchainData() {
   const MoralisWeb3Enable = await moralis.Web3.enable();
   debug(MoralisWeb3Enable);
 
-  const metaMaskWeb3 = new Web3(MoralisWeb3Enable || 'http://localhost:8545');
+  // const metaMaskWeb3 = new Web3(MoralisWeb3Enable || 'http://localhost:8545');
   const web3 = new Web3('http://localhost:7545');
 
   const accounts = await web3.eth.getAccounts();

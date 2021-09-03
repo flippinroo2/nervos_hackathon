@@ -8,7 +8,8 @@ const Toast = (props) => {
     console.log(props);
   }
 
-  const { functionName, returnValue } = props;
+  const { functionSignature, functionArguments, functionReturn } = props;
+  console.log('TEST');
 
   return (
     <div className="bd-example bg-dark p-5 align-items-center">
@@ -29,7 +30,7 @@ const Toast = (props) => {
             <rect width="100%" height="100%" fill="#007aff"></rect>
           </svg>
 
-          <strong className="me-auto">{functionName}</strong>
+          <strong className="me-auto">{functionSignature}</strong>
           <small className="text-muted">11 mins ago</small>
           <button
             type="button"
@@ -37,7 +38,12 @@ const Toast = (props) => {
             data-bs-dismiss="toast"
             aria-label="Close"></button>
         </div>
-        <div className="toast-body">{returnValue}</div>
+        <div className="toast-body">
+          <p>
+            Arguments = <small>{functionArguments}</small>
+          </p>
+          <p>Result = {functionReturn}</p>
+        </div>
       </div>
     </div>
   );

@@ -10,37 +10,53 @@ class DropdownButton extends Component {
     this.functionList = React.createRef();
     const stateObject = {
       buttonText: 'N/A',
-      functionArguments: '',
-      functionText: [],
+      functionData: [],
       functions: {},
     };
     this.state = stateObject;
     this.selectFunction = this.selectFunction.bind(this);
     this.interactWithContract = this.interactWithContract.bind(this);
-    this.returnFunctionResult = this.returnFunctionResult.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { functions } = props;
-    var functionText = [];
+    const { functions, returnValueFunction } = props;
+    var functionData = [],
+      functionArguments;
     if (functions) {
-      functionText = Object.keys(functions).filter((item) => {
-        if (item.startsWith('_')) {
-          if (!item.endsWith(')')) {
-            return null;
+      // functionText = Object.keys(functions).filter((item) => {
+      //   if (item.startsWith('_')) {
+      //     if (!item.endsWith(')')) {
+      //       return null;
+      //     }
+      //     return item;
+      //   }
+      //   if (item.startsWith('0x') || item.endsWith('()')) {
+      //     return null;
+      //   }
+      //   if (!item.endsWith(')')) {
+      //     return null;
+      //   }
+      //   return item;
+      // });
+      functionData = Object.keys(functions).reduce(
+        (results, item, index, state) => {
+          if (item.startsWith('0x') || item.endsWith('()')) {
+            return results;
           }
-          return item;
-        }
-        if (item.startsWith('0x') || item.endsWith('()')) {
-          return null;
-        }
-        if (!item.endsWith(')')) {
-          return null;
-        }
-        return item;
-      });
+          const [name, args] = item.split('(');
+          if (args) {
+            [functionArguments] = args.split(')');
+            results.push([name, functionArguments]);
+            return results;
+          }
+          return results;
+        },
+        [],
+      );
     }
-    return { functions, functionText };
+    // console.log('functionData');
+    // console.log(functionData);
+    return { functions, functionData, returnValueFunction };
   }
 
   componentDidMount() {
@@ -77,14 +93,22 @@ class DropdownButton extends Component {
   }
 
   async interactWithContract(event) {
-    const { functions } = this.state;
-    console.log(functions);
+    // console.log(this.state);
+    let { functions, functionData } = this.state;
+    // console.log(functions);
     const { path, target } = event;
     const { innerText } = target;
+    // functionData.filter((item) => {
+    //   // Have to loop through "functionData" to check for the proper function.
+    //   let [functionName, functionArguments] = item;
+    //   if (functionName == innerText.split('(')[0]) {
+    //     return true;
+    //   }
+    // });
     const [inputGroup] = path.filter((item) => {
       const { classList } = item;
       if (classList && classList.contains('input-group')) {
-        return item;
+        return true;
       }
     });
     let { value } = inputGroup.firstChild;
@@ -100,17 +124,18 @@ class DropdownButton extends Component {
       test = await functions[innerText](value);
       functionResult = await functions[innerText](value).call();
     }
-    console.log(functionResult);
-    console.log(test); // 0xeB5c8FB7d97bF7084ABdD77CCaF7dB5BeAAB08fA
-    this.returnFunctionResult(functionResult);
-  }
-
-  returnFunctionResult(result) {
-    this.props.returnFunctionResult(result);
+    // console.log(functionResult);
+    // console.log(test); // 0xeB5c8FB7d97bF7084ABdD77CCaF7dB5BeAAB08fA
+    this.props.returnValueFunction(
+      functionData,
+      innerText,
+      value,
+      functionResult,
+    );
   }
 
   render() {
-    const { buttonText, functions, functionText } = this.state;
+    const { buttonText, functions, functionData } = this.state;
     // Try combining both the hidden & unhidden buttons.
     return (
       <div className="btn-group">
@@ -138,15 +163,16 @@ class DropdownButton extends Component {
           className="dropdown-menu"
           data-popper-placement="bottom-start"
           ref={this.functionList}>
-          {functionText.length ? (
-            functionText.map((item, index) => {
+          {functionData.length ? (
+            functionData.map((item, index) => {
+              const [functionName, functionArguments] = item;
               return (
                 <li key={index}>
                   <a
                     className="dropdown-item"
                     href="#"
                     onClick={this.selectFunction}>
-                    {item}
+                    {`${functionName}(${functionArguments})`}
                   </a>
                 </li>
               );
