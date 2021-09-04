@@ -3,6 +3,9 @@ pragma solidity ^0.8.0;
 
 import './Template.sol';
 
+// Article on saving gas with smart contracts
+// https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6
+
 contract Token is Template {
     using Address for address;
     using Arrays for uint256[];
